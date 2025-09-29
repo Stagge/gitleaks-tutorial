@@ -5,10 +5,10 @@
 cd ~/demo-repo
 
 # Run gitleaks
-if gitleaks detect --source . | grep -q "API_KEY"; then
-  echo "API_KEY is still present! Make sure you removed it from your last commit."
+if gitleaks detect --source . >/dev/null 2>&1; then
+  echo "No secrets found — good job!"
+  exit 0
+else
+  echo "Gitleaks found secrets! Make sure you removed them from the last commit."
   exit 1
 fi
-
-echo "API_KEY removed successfully!"
-exit 0
