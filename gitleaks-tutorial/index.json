@@ -1,0 +1,22 @@
+{
+  "title": "Gitleaks Executable Tutorial",
+  "description": "Learn how to use Gitleaks to automatically detect and prevent secrets (API keys, passwords, tokens, certificates) from being committed to Git repositories.",
+  "details": {
+    "intro": {
+      "text": "intro.md"
+    },
+    "steps": [
+      {
+        "title": "Installing Gitleaks",
+        "text": "step1/text.md",
+        "verify": "step1/verify.sh"
+      },
+    ],
+    "finish": {
+      "text": "finish.md"
+    }
+  },
+  "backend": {
+    "imageid": "ubuntu"
+  }
+}
