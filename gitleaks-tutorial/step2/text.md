@@ -37,12 +37,16 @@ This updates the commit without changing the message.
 
 ### 4: Continue the rebase
 Run:
-```git rebase --continue*```{{exec}}
+```
+git rebase --continue
+```{{exec}}
 The commit history is now fixed.
 
 ### 5: Verify the fix
 Run:
-```gitleaks detect --source ~/demo-repo -v```{{exec}}
+```
+gitleaks detect --source ~/demo-repo -v
+```{{exec}}
 You should no longer see the API key in the output!🥳
 
 
