@@ -1,4 +1,4 @@
-from helper import connect
+from api import connect
 
 
 def main():
