@@ -11,13 +11,17 @@ Let's explore how we can configure Gitleaks to avoid this problem!
 ```
 gitleaks detect --source ~/demo-repo -v
 ```{{exec}}
-You should see a finding for MOCK_API_KEY.
+You should see two findings for our `MOCK_API_KEY`.
 
 ## 2: Add a custom config
 We can configure Gitleaks with a `.gitleaks.toml` file to ignore this mocked key. 
 
 
-Create a file ~/demo-repo/.gitleaks.toml with this content:
+Create a config file...
+```
+touch .gitleaks.toml
+```{{exec}}
+... and fill it with this content:
 ```toml
 [[rules]]
 description = "Ignore mock API key"
@@ -28,10 +32,11 @@ description = "Allow mock api key"
 regexes = ['''MOCK_API_KEY\s*=\s*"?12345"?''']
 ```
 
+Here we are creating a custom rule that will catch our mocked API key and adding it to the allowlist, ensuring that Gitleaks will not flag it as a leak.
+
 ## 3: Run Gitleaks with the config
 ```
-cd ~/demo-repo
-gitleaks detect --source . --config-path .gitleaks.toml -v
+gitleaks detect --source . --config .gitleaks.toml -v
 ```{{exec}}
 This time, the MOCK_API_KEY should not be reported.
 
