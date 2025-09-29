@@ -14,7 +14,7 @@ Click **Run** to download the latest release:
 
 ## 2. Extract and move to PATH
 
-````
+```
 tar -xzf gitleaks_8.28.0_linux_x64.tar.gz
 mv gitleaks /usr/local/bin/
 ```{{exec}}
@@ -23,4 +23,3 @@ mv gitleaks /usr/local/bin/
 `gitleaks version`{{exec}}
 
 Great! You now have Gitleaks installed locally. In the next step, we’ll scan a repo for secrets.
-````
