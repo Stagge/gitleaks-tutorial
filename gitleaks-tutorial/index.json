@@ -14,12 +14,14 @@
       {
         "title": "Scanning a Repository",
         "text": "step2/text.md",
+        "foreground": "clear.sh",
         "background": "step2/background.sh",
         "verify": "step2/verify.sh"
       },
       {
         "title": "Custom Rules and Allowlists",
         "text": "step3/text.md",
+        "foreground": "clear.sh",
         "background": "step3/background.sh",
         "verify": "step3/verify.sh"
       }
