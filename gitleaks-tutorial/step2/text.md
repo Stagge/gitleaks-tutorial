@@ -13,7 +13,6 @@ Luckily, since we have not yet pushed to a remote repository, this is easily fix
 ### 1: Start an interactive rebase
 
 Run:
-
 ```
 cd ~/demo-repo
 git rebase -i HEAD~1
@@ -26,9 +25,10 @@ git rebase -i HEAD~1
 ### 2: Remove the secret
 
 Edit the file containing the API key. For demo purposes you can just leave it blank, but in reality we would probably move it to an environment file.
-Edit the file using the *Editor* tab, or use `vim api.py`{{exec}}
+Edit the file using the *Editor* tab, or use `nano api.py`{{exec}}
 
 ### 3: Amend the commit
+Run:
 ```
 git add api.py
 git commit --amend --no-edit
@@ -36,11 +36,12 @@ git commit --amend --no-edit
 This updates the commit without changing the message.
 
 ### 4: Continue the rebase
-
-```git rebase --continue```{{exec}}
+Run:
+```git rebase --continue*```{{exec}}
 The commit history is now fixed.
 
 ### 5: Verify the fix
+Run:
 ```gitleaks detect --source ~/demo-repo -v```{{exec}}
 You should no longer see the API key in the output!🥳
 
