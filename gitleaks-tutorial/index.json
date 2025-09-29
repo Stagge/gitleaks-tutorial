@@ -20,7 +20,7 @@
       {
         "title": "Custom Rules and Allowlists",
         "text": "step3/text.md",
-        "background": "step3/background.sh",
+        "foreground": "step3/background.sh",
         "verify": "step3/verify.sh"
       }
     ],

@@ -1,6 +1,8 @@
 #!/bin/bash
 # Make sample repo
 
+cd ~/demo-repo
+
 # Copy file and commit
 wget https://raw.githubusercontent.com/Stagge/gitleaks-tutorial/refs/heads/main/gitleaks-tutorial/assets/demo-repo/test.py
 git add test.py
