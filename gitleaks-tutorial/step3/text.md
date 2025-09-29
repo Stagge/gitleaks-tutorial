@@ -27,9 +27,10 @@ touch .gitleaks.toml
 description = "Ignore mock API key"
 id = "mock-api-key"
 regex = '''MOCK_API_KEY'''
-[allowlist]
-description = "Allow mock api key"
-regexes = ['''MOCK_API_KEY\s*=\s*"?12345"?''']
+[[allowlist]]
+targetRules = ["mock-api-key"]
+description = "Allow mocked API keys in tests"
+paths = '''test.py'''
 ```
 
 Here we are creating a custom rule that will catch our mocked API key and adding it to the allowlist, ensuring that Gitleaks will not flag it as a leak.
