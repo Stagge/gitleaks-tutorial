@@ -10,18 +10,15 @@ We’ll install it locally and run it once to verify everything is working.
 
 Click **Run** to download the latest release:
 
-```bash, runnable
-wget -q https://github.com/gitleaks/gitleaks/releases/download/v8.28.0/gitleaks_8.28.0_linux_x64.tar.gz
-```
+`wget -q https://github.com/gitleaks/gitleaks/releases/download/v8.28.0/gitleaks_8.28.0_linux_x64.tar.gz`{{exec}}
+
 ## 2. Extract and move to PATH
-```bash, runnable
+```
 tar -xzf gitleaks_8.18.1_linux_x64.tar.gz
 mv gitleaks /usr/local/bin/
-```
+```{{exec}}
 
 ## 3. Verify the installation
-```bash, runnable
-gitleaks version
-```
+`gitleaks version`{{exec}}
 
 Great! You now have Gitleaks installed locally. In the next step, we’ll scan a repo for secrets.
