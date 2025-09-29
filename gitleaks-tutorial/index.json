@@ -14,7 +14,7 @@
       {
         "title": "Scanning a Repository",
         "text": "step2/text.md",
-        "background": "step2/background.sh",
+        "foreground": "step2/background.sh",
         "verify": "step2/verify.sh",
         "editor": {
           "path": "~/demo-repo"
