@@ -1,7 +1,4 @@
 #!/bin/bash
-# verify.sh for Step 2
-
-#!/bin/bash
 cd ~/demo-repo
 
 # Run gitleaks
