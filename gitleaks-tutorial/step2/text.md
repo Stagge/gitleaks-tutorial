@@ -13,7 +13,7 @@ Let's fix this by removing the secret and updating the commit.
 
 Let's remove the secret from the file:
 
-````bash
+```bash
 cd ~/demo-repo
 sed -i '/API_KEY/d' api.py
 ```{{exec}}

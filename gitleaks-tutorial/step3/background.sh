@@ -1,6 +1,8 @@
 #!/bin/bash
 # Make sample repo
 
+apt install python3.12-venv -y
+
 cd ~/demo-repo
 
 # Copy file and commit

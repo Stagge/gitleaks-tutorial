@@ -6,7 +6,7 @@ Now let's set up a pre-commit hook using the pre-commit framework to automatical
 
 First, let's create a virtual environment and install the pre-commit framework:
 
-````bash
+```bash
 python3 -m venv ~/venv
 source ~/venv/bin/activate
 pip install pre-commit
