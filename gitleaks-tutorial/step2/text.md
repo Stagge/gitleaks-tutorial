@@ -11,28 +11,29 @@ Let's fix this by removing the secret and updating the commit.
 
 ### 1: Remove the secret
 
-Edit the file containing the API key. For demo purposes you can just leave it blank, but in reality we would probably move it to an environment file.
-Edit the file using the _Editor_ tab, or use `nano api.py`{{exec}}
+Let's remove the secret from the file:
+
+````bash
+cd ~/demo-repo
+sed -i '/API_KEY/d' api.py
+```{{exec}}
 
 ### 2: Update the commit
 
 Run:
 
-````
-cd ~/demo-repo
+```bash
 git add api.py
 git commit --amend --no-edit
 ```{{exec}}
 This updates the commit without changing the message.
 
 ### 3: Verify the fix
+
 Run:
-````
 
+```bash
 gitleaks detect --source ~/demo-repo -v
-
 ```{{exec}}
 You should no longer see the API key in the output!🥳
-
-
-```
+````

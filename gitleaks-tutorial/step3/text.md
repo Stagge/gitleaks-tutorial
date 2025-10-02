@@ -4,8 +4,11 @@ Now let's set up a pre-commit hook using the pre-commit framework to automatical
 
 ## 1: Install pre-commit
 
-First, let's install the pre-commit framework:
-```
+First, let's create a virtual environment and install the pre-commit framework:
+
+````bash
+python3 -m venv ~/venv
+source ~/venv/bin/activate
 pip install pre-commit
 ```{{exec}}
 
@@ -28,6 +31,7 @@ EOF
 
 ```bash
 cd ~/demo-repo
+source ~/venv/bin/activate
 pre-commit install
 ```{{exec}}
 
@@ -36,6 +40,7 @@ pre-commit install
 Let's try to commit our current changes (should work since no secrets):
 
 ```bash
+source ~/venv/bin/activate
 git add .
 git commit -m "Add pre-commit configuration"
 ```{{exec}}
@@ -47,6 +52,7 @@ Great! The commit went through because no secrets were detected.
 Now let's test the protection by adding a secret and trying to commit it:
 
 ```bash
+source ~/venv/bin/activate
 echo 'API_KEY="sk-1234567890abcdef"' >> app.py
 git add app.py
 git commit -m "Add secret API key"
@@ -59,11 +65,8 @@ Perfect! The pre-commit hook blocked the commit because it detected a secret.
 Let's remove the secret and commit properly:
 
 ```bash
-nano app.py
-```{{exec}}
-
-
-```bash
+source ~/venv/bin/activate
+sed -i '/API_KEY/d' app.py
 git add app.py
 git commit -m "Update app without secrets"
 ```{{exec}}
@@ -81,3 +84,4 @@ The pre-commit framework:
 
 This prevents secrets from ever entering your Git history! 🎉
 
+````
