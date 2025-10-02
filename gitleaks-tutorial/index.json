@@ -24,6 +24,13 @@
         "foreground": "clear.sh",
         "background": "step3/background.sh",
         "verify": "step3/verify.sh"
+      },
+      {
+        "title": "Gitleaks Configuration",
+        "text": "step4/text.md",
+        "foreground": "clear.sh",
+        "background": "step4/background.sh",
+        "verify": "step4/verify.sh"
       }
     ],
     "finish": {
