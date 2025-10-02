@@ -6,7 +6,7 @@ Now let's set up a pre-commit hook using the pre-commit framework to automatical
 
 First, let's create a virtual environment and install the pre-commit framework:
 
-```bash
+````bash
 python3 -m venv ~/venv
 source ~/venv/bin/activate
 pip install pre-commit
@@ -14,15 +14,17 @@ pip install pre-commit
 
 ## 2: Create pre-commit configuration
 
-Create a `.pre-commit-config.yaml` file:
+Since we already have Gitleaks installed from step 1, let's create a pre-commit config that uses the system binary:
 
 ```bash
 cat > ~/demo-repo/.pre-commit-config.yaml << 'EOF'
 repos:
-  - repo: https://github.com/gitleaks/gitleaks
-    rev: v8.28.0
+  - repo: local
     hooks:
       - id: gitleaks
+        name: gitleaks
+        entry: gitleaks
+        language: system
         args: ['--staged', '--verbose']
 EOF
 ```{{exec}}
