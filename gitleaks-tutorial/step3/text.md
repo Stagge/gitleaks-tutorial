@@ -1,45 +1,83 @@
-# Step 3: Custom Rules and Allowlists
+# Step 3: Pre-commit Hook
 
-Sometimes Gitleaks flags "secrets" that aren't actually sensitive.  
-For example, our repo now contains a `MOCK_API_KEY` that we don’t care about. 
+Now let's set up a pre-commit hook using the pre-commit framework to automatically prevent secrets from being committed!
 
+## 1: Install pre-commit
 
-Let's explore how we can configure Gitleaks to avoid this problem!
-
-## 1: Run Gitleaks and see the problem
-
+First, let's install the pre-commit framework:
 ```
-gitleaks detect --source ~/demo-repo -v
+pip install pre-commit
 ```{{exec}}
-You should see two findings for our `MOCK_API_KEY`.
 
-## 2: Add a custom config
-We can configure Gitleaks with a `.gitleaks.toml` file to ignore this mocked key. 
+## 2: Create pre-commit configuration
 
+Create a `.pre-commit-config.yaml` file:
 
-Create a config file...
-```
-touch .gitleaks.toml
+```bash
+cat > ~/demo-repo/.pre-commit-config.yaml << 'EOF'
+repos:
+  - repo: https://github.com/gitleaks/gitleaks
+    rev: v8.28.0
+    hooks:
+      - id: gitleaks
+        args: ['--staged', '--verbose']
+EOF
 ```{{exec}}
-... and fill it with this content:
-```toml
-[[rules]]
-description = "Ignore mock API key"
-id = "mock-api-key"
-regex = '''MOCK_API_KEY'''
-[allowlist]
-targetRules = ["mock-api-key"]
-description = "Allow mocked API keys in tests"
-paths = ['''test.py''']
-```
 
-Here we are creating a custom rule that will catch our mocked API key and adding it to the allowlist, ensuring that Gitleaks will not flag it as a leak.
+## 3: Install the hooks
 
-## 3: Run Gitleaks with the config
-```
-gitleaks detect --source . --config .gitleaks.toml -v
+```bash
+cd ~/demo-repo
+pre-commit install
 ```{{exec}}
-This time, the MOCK_API_KEY should not be reported.
+
+## 4: Test the hook with a clean commit
+
+Let's try to commit our current changes (should work since no secrets):
+
+```bash
+git add .
+git commit -m "Add pre-commit configuration"
+```{{exec}}
+
+Great! The commit went through because no secrets were detected.
+
+## 5: Test the hook by trying to commit a secret
+
+Now let's test the protection by adding a secret and trying to commit it:
+
+```bash
+echo 'API_KEY="sk-1234567890abcdef"' >> app.py
+git add app.py
+git commit -m "Add secret API key"
+```{{exec}}
+
+Perfect! The pre-commit hook blocked the commit because it detected a secret.
+
+## 6: Clean up and commit properly
+
+Let's remove the secret and commit properly:
+
+```bash
+nano app.py
+```{{exec}}
 
 
-Gitleaks allows you to configure in many other ways beyond simple regex allowlists. You can silence false positives inline with comments like # gitleaks:allow, exclude entire files or commits through the configuration file, or even adjust entropy thresholds to reduce noise from random-looking strings such as UUIDs or hashes. Built-in rules can also be disabled or customized, giving you fine-grained control over what gets flagged. This flexibility makes it easy to adapt Gitleaks to your project’s needs, whether you’re dealing with test data, placeholder values, or legacy files.
+```bash
+git add app.py
+git commit -m "Update app without secrets"
+```{{exec}}
+
+
+Excellent! Now the commit goes through because we removed the secret.
+
+## How it works
+
+The pre-commit framework:
+- Automatically downloads and manages the Gitleaks binary
+- Runs Gitleaks on staged files before each commit
+- Blocks commits if secrets are detected
+- Provides consistent behavior across different machines
+
+This prevents secrets from ever entering your Git history! 🎉
+

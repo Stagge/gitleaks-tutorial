@@ -19,18 +19,11 @@
         "verify": "step2/verify.sh"
       },
       {
-        "title": "Custom Rules and Allowlists",
+        "title": "Pre-commit Hook",
         "text": "step3/text.md",
         "foreground": "clear.sh",
         "background": "step3/background.sh",
         "verify": "step3/verify.sh"
-      },
-      {
-        "title": "Git Hooks - Blocking Commits",
-        "text": "step4/text.md",
-        "foreground": "clear.sh",
-        "background": "step4/background.sh",
-        "verify": "step4/verify.sh"
       }
     ],
     "finish": {
