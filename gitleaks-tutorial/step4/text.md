@@ -6,7 +6,7 @@ Sometimes Gitleaks flags "secrets" that aren't actually sensitive, like mock dat
 
 First, let's add a test file that contains a mock API key:
 
-````bash
+```bash
 wget https://raw.githubusercontent.com/Stagge/gitleaks-tutorial/refs/heads/main/gitleaks-tutorial/assets/demo-repo/test.py
 git add test.py
 git commit -m "Add test file"
