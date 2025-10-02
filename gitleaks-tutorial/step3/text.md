@@ -23,9 +23,8 @@ repos:
     hooks:
       - id: gitleaks
         name: gitleaks
-        entry: gitleaks
+        entry: gitleaks detect --source . --staged --verbose
         language: system
-        args: ['--staged', '--verbose']
 EOF
 ```{{exec}}
 
