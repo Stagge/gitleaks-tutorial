@@ -7,6 +7,7 @@ Now let's set up a pre-commit hook using the pre-commit framework to automatical
 First, let's create a virtual environment and install the pre-commit framework:
 
 ```bash
+apt install python3.12-venv -y
 python3 -m venv ~/venv
 source ~/venv/bin/activate
 pip install pre-commit
@@ -49,11 +50,16 @@ Great! The commit went through because no secrets were detected.
 
 ## 5: Test the hook by trying to commit a secret
 
-Now let's test the protection by adding a secret and trying to commit it:
+Now let's test the protection by adding a secret
 
 ```bash
 echo 'API_KEY="sk-1234567890abcdef"' >> app.py
 git add app.py
+```{{exec}}
+
+And trying to commit it
+
+```bash
 git commit -m "Add secret API key"
 ```{{exec}}
 
@@ -61,14 +67,18 @@ Perfect! The pre-commit hook blocked the commit because it detected a secret.
 
 ## 6: Clean up and commit properly
 
-Let's remove the secret and commit properly:
+Let's remove the secret
 
 ```bash
 sed -i '/API_KEY/d' app.py
 git add app.py
-git commit -m "Update app without secrets"
 ```{{exec}}
 
+And commit properly
+
+```bash
+git commit -m "Update app without secrets"
+```{{exec}}
 
 Excellent! Now the commit goes through because we removed the secret.
 
