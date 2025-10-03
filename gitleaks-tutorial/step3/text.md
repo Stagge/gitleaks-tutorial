@@ -8,6 +8,9 @@ First, let's create a virtual environment and install the pre-commit framework:
 
 ```bash
 apt install python3.12-venv -y
+```{{exec}}
+
+```bash
 python3 -m venv ~/venv
 source ~/venv/bin/activate
 pip install pre-commit
