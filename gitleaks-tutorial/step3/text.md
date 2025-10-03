@@ -23,7 +23,7 @@ repos:
     hooks:
       - id: gitleaks
         name: gitleaks
-        entry: gitleaks detect --source .
+        entry: gitleaks detect --source . -v
         language: system
 EOF
 ```{{exec}}
@@ -41,7 +41,6 @@ pre-commit install
 Let's try to commit our current changes (should work since no secrets):
 
 ```bash
-source ~/venv/bin/activate
 git add .
 git commit -m "Add pre-commit configuration"
 ```{{exec}}
@@ -53,7 +52,6 @@ Great! The commit went through because no secrets were detected.
 Now let's test the protection by adding a secret and trying to commit it:
 
 ```bash
-source ~/venv/bin/activate
 echo 'API_KEY="sk-1234567890abcdef"' >> app.py
 git add app.py
 git commit -m "Add secret API key"
@@ -66,7 +64,6 @@ Perfect! The pre-commit hook blocked the commit because it detected a secret.
 Let's remove the secret and commit properly:
 
 ```bash
-source ~/venv/bin/activate
 sed -i '/API_KEY/d' app.py
 git add app.py
 git commit -m "Update app without secrets"
