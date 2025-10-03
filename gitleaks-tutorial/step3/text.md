@@ -24,7 +24,7 @@ repos:
     hooks:
       - id: gitleaks
         name: gitleaks
-        entry: gitleaks detect --source . -v
+        entry: gitleaks dir -v
         language: system
 EOF
 ```{{exec}}
