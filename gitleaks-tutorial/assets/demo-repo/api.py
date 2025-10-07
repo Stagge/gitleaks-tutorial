@@ -1,4 +1,4 @@
-API_KEY = "7H3-34557R-8UNNY-15-N0T-R34L"  # Temporary - Move this to a environment variable before committing
+API_KEY = "7H3-34573R-8UNNY-15-N0T-R34L"  # Temporary - Move this to a environment variable before committing
 
 
 def connect():

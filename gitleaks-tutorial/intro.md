@@ -18,7 +18,7 @@ It’s easy to forget that even if you remove a secret from your code, it still 
 
 With this in mind, the name of the game is your commits. You want to catch sensitive information before it ever gets pushed. That’s where Gitleaks comes in.
 
-In DevOps speed and automation are everything, but that also means mistakes can spread fast. A single leaked API key in one repo can give attackers access to entire pipelines, deployment servers, or cloud environments. Since DevOps workflows often involve shared credentials, automation tokens, and infrastructure-as-code, protecting secrets is a security and reliability issue.
+In DevOps speed and automation are everything, but that also means mistakes can spread fast. A single leaked API key in one repo can give attackers access to entire pipelines, deployment servers, or cloud environments. Since DevOps workflows often involve shared credentials, automation tokens, and infrastructure-as-code, protecting secrets is a fundamental security and reliability issue.
 
 Tools like Gitleaks help integrate security directly into the DevOps process, ensuring that secrets are caught early in the CI/CD pipeline rather than after they’ve been pushed, relieving developers of that pressure.
 
