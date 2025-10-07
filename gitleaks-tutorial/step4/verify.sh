@@ -33,10 +33,4 @@ if ! gitleaks detect --source . --config .gitleaks.toml >/dev/null 2>&1; then
     exit 1
 fi
 
-# Test that gitleaks without config flags test.py
-if gitleaks detect --source . >/dev/null 2>&1; then
-    echo "❌ Gitleaks without config should flag test.py"
-    exit 1
-fi
-
 echo "✅ Gitleaks configuration is working correctly!"

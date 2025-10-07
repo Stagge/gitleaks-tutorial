@@ -104,11 +104,11 @@ Perfect! The pre-commit hook should still block real secrets.
 
 ```bash
 sed -i '/REAL_SECRET/d' app.py
+echo '# New comment' >> app.py
 git add app.py
 ```{{exec}}
 
 ```bash
-echo '# New comment' >> app.py
 git commit -m "Remove real secret"
 ```{{exec}}
 
