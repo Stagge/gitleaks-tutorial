@@ -99,5 +99,3 @@ The pre-commit framework:
 - Provides consistent behavior across different machines
 
 This prevents secrets from ever entering your Git history! 🎉
-
-````

@@ -36,4 +36,3 @@ Run:
 gitleaks detect --source ~/demo-repo -v
 ```{{exec}}
 You should no longer see the API key in the output!🥳
-````
