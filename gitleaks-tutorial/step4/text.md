@@ -6,7 +6,7 @@ Sometimes Gitleaks flags "secrets" that aren't actually sensitive, like mock dat
 
 First, let's add a test file that contains a mock API key:
 
-```bash
+````bash
 wget https://raw.githubusercontent.com/Stagge/gitleaks-tutorial/refs/heads/main/gitleaks-tutorial/assets/demo-repo/test.py
 git add test.py
 git commit -m "Add test file"
@@ -15,7 +15,7 @@ git commit -m "Add test file"
 ## 2: Run Gitleaks and see the problem
 
 ```bash
-gitleaks detect --source . -v
+gitleaks dir -v
 ```{{exec}}
 
 You should see that Gitleaks flags the `MOCK_API_KEY` as a potential secret, even though it's just test data.
@@ -26,7 +26,12 @@ Let's create a `.gitleaks.toml` file to configure Gitleaks:
 
 ```bash
 cat > ~/demo-repo/.gitleaks.toml << 'EOF'
-[allowlist]
+# Extend default rules
+[extend]
+useDefault = true
+
+# Allowlist to ignore MOCK_API_KEY in test.py
+[[allowlists]]
 description = "Allow mock API keys in test files"
 paths = [
     "test.py"
@@ -42,7 +47,7 @@ EOF
 Now let's run Gitleaks with our custom configuration:
 
 ```bash
-gitleaks detect --source . --config .gitleaks.toml -v
+gitleaks dir --config .gitleaks.toml -v
 ```{{exec}}
 
 Perfect! The `MOCK_API_KEY` should no longer be flagged as a secret.
@@ -58,7 +63,7 @@ repos:
     hooks:
       - id: gitleaks
         name: gitleaks
-        entry: gitleaks detect --source . --config .gitleaks.toml
+        entry: gitleaks dir --config .gitleaks.toml -v
         language: system
 EOF
 ```{{exec}}
@@ -86,8 +91,11 @@ Great! The commit should go through because the mock API key is now allowed.
 Let's verify that real secrets are still blocked:
 
 ```bash
-echo 'REAL_SECRET="sk-1234567890abcdef"' >> app.py
+echo 'REAL_SECRET="e565809a-b337-48bb-aad1-3f48a4af880o0"' >> app.py
 git add app.py
+```{{exec}}
+
+```bash
 git commit -m "Add real secret"
 ```{{exec}}
 
@@ -98,6 +106,9 @@ Perfect! The pre-commit hook should still block real secrets.
 ```bash
 sed -i '/REAL_SECRET/d' app.py
 git add app.py
+```{{exec}}
+
+```bash
 git commit -m "Remove real secret"
 ```{{exec}}
 
