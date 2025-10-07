@@ -9,9 +9,15 @@ if [ ! -f .pre-commit-config.yaml ]; then
     exit 1
 fi
 
-# Check if pre-commit is installed
-if ! command -v pre-commit &> /dev/null; then
-    echo "❌ pre-commit not installed"
+# Check if pre-commit is installed (in virtual environment)
+if [ ! -f ~/venv/bin/pre-commit ]; then
+    echo "❌ pre-commit not found in virtual environment"
+    exit 1
+fi
+
+# Test if pre-commit works
+if ! ~/venv/bin/pre-commit --version >/dev/null 2>&1; then
+    echo "❌ pre-commit not working in virtual environment"
     exit 1
 fi
 
@@ -20,3 +26,20 @@ if ! grep -q "gitleaks" .pre-commit-config.yaml; then
     echo "❌ Gitleaks not configured in pre-commit"
     exit 1
 fi
+
+# Test that the hook blocks commits with secrets
+echo 'TEST_SECRET="sk-test123456789"' >> test_secret.py
+git add test_secret.py
+
+# This should fail (exit code 1)
+if git commit -m "Test commit with secret" 2>/dev/null; then
+    echo "❌ Pre-commit hook failed to block secret commit"
+    git reset --soft HEAD~1  # undo the commit
+    exit 1
+fi
+
+# Clean up
+git reset HEAD test_secret.py
+rm test_secret.py
+
+echo "✅ Pre-commit framework with Gitleaks is working correctly!"

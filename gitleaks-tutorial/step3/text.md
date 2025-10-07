@@ -74,6 +74,11 @@ Let's remove the secret
 
 ```bash
 sed -i '/API_KEY/d' app.py
+```{{exec}}
+
+And add content to push
+```bash
+echo '# New comment' >> app.py
 git add app.py
 ```{{exec}}
 
