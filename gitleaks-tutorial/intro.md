@@ -1,6 +1,6 @@
 Hello and welcome!
 
-Today you will be learning all about [Gitleaks](https://github.com/gitleaks/gitleaks). 
+Today you will be learning all about [Gitleaks](https://github.com/gitleaks/gitleaks).
 
 ```
 ┌─○───┐
@@ -22,12 +22,12 @@ In DevOps speed and automation are everything, but that also means mistakes can 
 
 Tools like Gitleaks help integrate security directly into the DevOps process, ensuring that secrets are caught early in the CI/CD pipeline rather than after they’ve been pushed, relieving developers of that pressure.
 
-
 Today, you will learn how to:
- - set up Gitleaks locally,
- - scan your repo for leaks,
- - add automatically scan commits using pre-commit hooks,
- - configure Gitleaks to your liking, and
- - integrate Gitleaks in to you CI/CD pipeline with Github Actions.
 
-Lets get started! 🙌
+- set up Gitleaks locally,
+- scan your repo for leaks,
+- automatically scan commits using pre-commit hooks,
+- configure Gitleaks to your liking, and
+- integrate Gitleaks into your CI/CD pipeline with GitHub Actions.
+
+Let's get started! 🙌

@@ -1,10 +1,10 @@
 # Step 5: Integrating Gitleaks to CI/CD pipelines with Github Actions
 
-In this final step, we’ll look at how you can integrate Gitleaks into a real-world workflow using GitHub Actions.
+In this final step, we'll look at how you can integrate Gitleaks into a real-world workflow using GitHub Actions.
 
 One of the main strengths of Gitleaks is that it fits naturally into CI/CD pipelines. By running it automatically on every push or pull request, you can catch secrets before they ever make it into your main branch without relying on developers to remember to scan manually.
 
-Here’s a simple example of what a GitHub Actions workflow for Gitleaks could look like:
+Here's a simple example of what a GitHub Actions workflow for Gitleaks could look like:
 
 ```yaml
 name: gitleaks
@@ -20,7 +20,7 @@ jobs:
       - uses: gitleaks/gitleaks-action@v2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GITLEAKS_LICENSE: ${{ secrets.GITLEAKS_LICENSE}} # Only required for Organizations, not personal accounts.
+          GITLEAKS_LICENSE: ${{ secrets.GITLEAKS_LICENSE }} # Only required for Organizations, not personal accounts.
 ```
 
 This Action triggers on both pushes and pull requests. It checks out your code, runs Gitleaks with your configuration file, and fails the build if a secret is found. That means your team won’t be able to merge code that leaks sensitive information, effectively stopping the problem at the source.

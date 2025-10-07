@@ -53,7 +53,7 @@ Great! The commit went through because no secrets were detected.
 
 ## 5: Test the hook by trying to commit a secret
 
-Now let's test the protection by adding a secret
+Now let's test the protection by adding a secret and trying to commit it:
 
 ```bash
 echo 'API_KEY="sk-1234567890abcdef"' >> app.py
@@ -70,7 +70,7 @@ Perfect! The pre-commit hook blocked the commit because it detected a secret.
 
 ## 6: Clean up and commit properly
 
-Let's remove the secret
+Let's remove the secret and commit properly:
 
 ```bash
 sed -i '/API_KEY/d' app.py
