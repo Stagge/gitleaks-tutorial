@@ -31,6 +31,11 @@
         "foreground": "clear.sh",
         "background": "step4/background.sh",
         "verify": "step4/verify.sh"
+      },
+      {
+        "title": "Integrating Gitleaks to CI/CD pipelines with Github Actions",
+        "text": "step5/text.md",
+        "foreground": "clear.sh"
       }
     ],
     "finish": {
